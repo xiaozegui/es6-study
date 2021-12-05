@@ -18,7 +18,13 @@
     cmd11:git remote add origin  //连接远程仓库
     cmd12:git remote //查看远程仓库
     cmd13:git push origin master//推送远程仓库 [new branch]//本地仓库为空才有
-*/
+    cmd14:git branch -vv //查看远程分支与本地分支的关系
+    cmd15:git push --set-upstream origin master:master //推送并设置默认的远程与本地仓库关联
+    //git push -f 强制覆盖（没有权限，不常用）
+    cmd16:git clone url localurl   //克隆远程仓库
+    cmd17:git fetch origin master //抓取远程仓库更新，不合并
+    cmd18:git pull orgin master //抓取远程仓库更新并合并
+    */
 //保存文件执行 git add .
 
 
