@@ -25,6 +25,7 @@
     cmd17:git fetch origin master //抓取远程仓库更新，不合并
     cmd18:git pull orgin master //抓取远程仓库更新并合并
     //解决合并冲突:手动修改，都pull抓取更新
+    cmd19:git restore name
     */
 //保存文件执行 git add .
 
