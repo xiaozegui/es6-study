@@ -26,6 +26,8 @@
     cmd18:git pull orgin master //抓取远程仓库更新并合并
     //解决合并冲突:手动修改，都pull抓取更新
     cmd19:git restore name //将文件从store变为unstore，取消跟踪，丢掉更新
+    cmd20:git push --delete origin name //删除远程分支 分支合并后远程和本地都得手动删除分支
+    //直接在本地创建分支，push后自动在云端创建相同分支
     */
 //保存文件执行 git add .
 
