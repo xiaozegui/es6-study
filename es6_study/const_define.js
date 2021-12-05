@@ -28,7 +28,17 @@ const a = 10; */
 //freeze  extentable:false
 // arr.push(1);
 // console.log(arr);
+/* 
+    顶层对象：在浏览器窗口：window  node:global  
+    es5中var声明的变量与window属性有映射机制
+*/
+// var n = 1; //window.n = 1
+// b = 2;//window.b = 2  写错直接挂window上
+// console.log(n);
 
+/* 
+    let const class 产生块级作用域 ，不作顶层对象的属性，没有映射机制
+*/
 
 
 
