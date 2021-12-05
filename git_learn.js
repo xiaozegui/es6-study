@@ -11,6 +11,8 @@
     cmd5:git reflog //查看已经提交的删除记录
     cmd6:git branch //查看分支
     cmd7:git branch name //创建分支
+    cmd8:git checkout name //切换分支 -b(无则创建)
+    head->master 当前分支指示
 */
 //保存文件执行 git add .
 
