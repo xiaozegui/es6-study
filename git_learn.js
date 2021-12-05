@@ -13,6 +13,9 @@
     cmd7:git branch name //创建分支
     cmd8:git checkout name //切换分支 -b(无则创建)
     head->master 当前分支指示
+    cmd9:git merge name  //合并分支  
+    cmd10:git branch -d(-D) name //删除分支
+    cmd11:git remote add origin url
 */
 //保存文件执行 git add .
 
