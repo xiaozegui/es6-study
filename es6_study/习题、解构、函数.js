@@ -28,3 +28,4 @@ console.log(foo) */
 //!!所谓暂时死区，就是不能在初始化之前，使用变量。
 /* let x;//没有明确初始化值为undefind;
 console.log(x); */
+//参考资料:https://zhuanlan.zhihu.com/p/28140450
