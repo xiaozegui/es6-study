@@ -15,7 +15,9 @@
     head->master 当前分支指示
     cmd9:git merge name  //合并分支  
     cmd10:git branch -d(-D) name //删除分支
-    cmd11:git remote add origin url
+    cmd11:git remote add origin  //连接远程仓库
+    cmd12:git remote //查看远程仓库
+    cmd13:git push origin//推送远程仓库
 */
 //保存文件执行 git add .
 
