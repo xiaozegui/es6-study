@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        /* function fn(a, b, c = 2){
+        }
+        fn(1);
+        console.log(fn.length);//函数参数长度2,默认值不算且阻断，默认值放首位值为0
+        function fn1(a = 1, b, c){}
+        console.log(fn1.length);//1 */
+        //arguments形参默认值改变不了
+
+        /* function fn({x, y = 2} = {}){
+            console.log(x, y);
+        }
+        fn({});//undefined 2
+        fn({x: 1});//1 2
+        fn({x: 1, y: 3});//1 3
+        fn();//undefined 2 */
+        // let x = x;//TDZ
+        //默认参数作用域视为块级作用域，用let声明，包裹一层函数作用域
+        
+        //this绑定的四个规则
+        //1.默认绑定规则： 函数调用默认this指向window
+        //2.隐式绑定：谁调用this指向谁
+        //3.显示绑定：call(obj,param) apply（obj,[...]） bind()不立即执行返回新函数
+        //4.new 绑定：构造函数最后会隐式return this指向实例对象
+        //优先级：new > 显示绑定 > 隐式绑定 > 默认绑定
+
+        /* function fn(){console.log(this);}
+        fn()//window user strict加函数体内才有效，undefine
+        function foo(){console.log(this);}
+        const obj = {
+            a: 1,
+            foo
+        }
+        obj.foo()//1 */
+        /* //赋值给一个变量，this指向变了
+        var f = obj.foo//f本质是一个函数，obj.foo不是函数调用，只是一个内存索引
+        f()//window,f()==window.f() */
+
+        //箭头函数
+
+        //let fn = a => a;
+        /* function fn(a){
+            return a
+        } */
+        /* let a = fn(1);
+        console.log(a); */
+        //箭头函数与解构赋值结合，箭头函数没有实参列表arguments
+        /* let fn = (a ,b) => {
+            console.log(arguments);//not defined
+        }
+        fn(1, 2); */
+        /* let fn = ({a, b} = {}) => {
+            //.log(arguments);//not defined
+            console.log(a, b);
+        }
+        fn({a: 1, b: 2}); */
+        //箭头函数 spread/rest 运算符（展开或者收集）
+        /* let sum = (...args) => {
+            console.log(args);//[1, 2]类似arguments
+        }
+        sum(1,2) */
+
+        /* function fn(x, y, z){
+            console.log(x, y, z);
+            console.log(arguments);
+        }
+        fn(...[1, 2, 3, 4, 5]);//实现原理apply
+        fn.apply(null,[1, 2, 3, 4, 5]);//同样效果 */
+
+       /*  let arr1 = [2, 3, 4];
+        let arr2 = [1, ...arr1, 5];
+        console.log(arr2); */
+
+        /* let fn = (a, b, ...args) => {
+            console.log(a, b, args);//rest运算符必须是最后一位
+        }
+        fn(1, 2, 3, 4, 5, 6, 7, 8); */
+        //Array.prototype.slice.call(arguments,0).sort//将有length属性的对象转化为array并排序
+       /*  var l = function fn(a, ...args){}.length;//1
+        var l = function fn(...args){}.length;//0
+        var l = function fn(a, b = 0, ...args){}.length;//1 默认值和rest都不算
+        console.log(l); */
+
+
+
+    </script>
+</body>
+</html>
