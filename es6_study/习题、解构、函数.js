@@ -28,4 +28,97 @@ console.log(foo) */
 //!!所谓暂时死区，就是不能在初始化之前，使用变量。
 /* let x;//没有明确初始化值为undefind;
 console.log(x); */
-//参考资料:https://zhuanlan.zhihu.com/p/28140450
+//参考资料:https://zhuanlan.zhihu.com/p/28140450 
+//hositing 变量提升
+
+/* function fn(x,y){
+    x=x||1;
+    y=y||2;
+    console.log(x+y);
+    var a = typeof(arguments[0]) !== 'undefined'? arguments[0]:1;
+    var b = typeof(arguments[0]) !== 'undefined'? arguments[1]:2;
+    console.log(a+b);
+}
+fn();
+fn(5,6);  //先形参赋值
+fn(null,7);//7 null:false 
+fn(0,5) //6 falsey(虚值)
+*/ 
+//作用域：在看到{}中有let、const、function才会把其当做块级作用域。函数提升，不会提升到顶层作用域
+/* {   
+    console.log(fn);
+    function fn(){
+        
+           //block：{fn:fn(),n:undefined}
+       
+    }
+    let n;
+} */
+//函数执行先形参赋值，再变量提升
+//参考资料：https://zhuanlan.zhihu.com/p/161274775
+//预编译先函数提升再变量提升 参考《你不知道的javascript》
+
+//es6函数默认值
+
+/* function fn(x=1,y=2) {
+    console.log(x+y);
+}
+fn();
+fn(5,6);  //先形参赋值
+fn(null,7);//7 null:false 
+fn(0,5) //6 falsey(虚值) */ //底层是使用上面a,b做法
+//
+/* let x = 1;
+function fn(y = x) {//let x暂时性死区，x->父级作用域找
+    let x = 2;
+    console.log(x,y);
+} */
+/* let x = 1;
+function fn(x = 2) {
+    let x = 2;//uncaught syntaxerror x has been declare
+    console.log(x);
+} */
+/* let x = 1;
+function fn(x = x) {//暂时性死区
+    console.log(x);
+}
+fn(); */
+/* function f1(x = 1, y=()=>{x=10;} ){
+    y();
+    console.log( x );
+    let x;
+}
+f1(); */
+//var 变量提升为undefined 默认值为1
+/* function f2(x = 1, y = ()=>{ x = 10;} ){
+    y();
+    console.log( x );//10
+    var x = 'abc';
+}
+f2(); */
+
+/* var w = 1,z = 2;
+function fn(x = w + 1, y = x + 1, z = z + 1) {//cannot access z before initialize
+    console.log(x,y,z);
+} */
+//fn的参数有默认值产生参数作用域，函数的参数可视为let声明，let x = x ，x没有initialize报错。
+//特例：函数里面不能再使用let声明相同的参数变量,报错 has declare。
+/* var w = 1,y = 2;
+function fn(x = w + 1, y = x + 1) {
+    console.log(x,y);//2 3
+}
+fn() */
+//函数参数块级作用域可以访问父级作用域（script or window）
+/* let a = 99;
+function foo(b = a + 1) { //let b = 99 +1 =100   
+    console.log(b); //
+}
+foo(); //100
+a = 100;
+foo();//101   默认参数为表达式，有惰性求值 */ 
+
+let a = 99;
+function foo(b = 99, a = b + 1) { //let b = 99 +1 =100   函数体作用域可以访问函数参数作用域
+    console.log(a,b); //
+}
+foo(); //100
