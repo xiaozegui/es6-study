@@ -149,11 +149,50 @@ let [x = 1, y = x] = [] // x = 1,y = 1 */
 //let [x = y, y = 1] = []; //TDZ
 
 //es5对象创建
-const obj  = {};
+/* const obj  = {};
 const obj1 = new Obeject();//option:{}
 const obj2 = Object.create(null);//option:{} 指定__proto__ = null
 //es5对象的增删改查
 obj.name = '张三';
 obj.name = '李四';//或者obj['name'] 对象的属性值为字符串或者symbol，不是字符串的自动转为字符串
 obj.name;
-delete obj.name;
+delete obj.name; */
+//es6 对象扩展 简写 name:name ===name  eat:function(){} === eat(){}
+//属性拼接：
+// let name1 = '名',
+//     name2 = '字',
+//     val = 'zhangsan'
+// let obj = {
+//     [name1+name2]:val//不是字符串要用[]包裹，symbol值也要[]
+// }
+// console.log(obj);//{'名字'：'zhangsan'}
+//对象的解构:属性名一致 无顺序(数组有顺序) 默认值
+// let {a: x ,b: y, c: z } = {a: 1, b: 2, c: 3};//结构相同，属性相同，变量为x ，y ， z
+// console.log(x, y, z);
+//属性简写
+/* let {a, b, c} = {a: 1,b: 2,c: 3};
+console.log(a, b, c);
+ */
+//解构失败和不完全解构,
+/* let {a: a = 2, b, c, d, e, f, g, h} = { b: 2, c: 3, d: 4, f: 5};//默认赋值{a = 2}或者{a: a = 2}
+console.log(a, b, c, d, e, f, g, h);//2 2 3 4 undefined 5 undefined undefined */
+//实例1
+/* let data = [{id: 1, course:'a'},{id: 2, course:'b'},{id: 3, course:'c'},{id: 4, course:'d'},{id: 5, course:'e'},{id: 6, course:'f'}]
+let [{course: course1}, {course: course2}, {course: course3}, {course: course4}, {course: course5}] = data;
+console.log(course1, course2, course3, course4, course5); */
+//实例2
+/* const person = {
+    nm: 'zhangsan',
+    age: 78,
+    son: {
+        nm: 'lisi',
+        age: 30,
+        son: {
+            nm: 'wangwu',
+            age: 10
+        }
+    }
+}
+let {son:{son:{nm}}} = person;
+console.log(nm);//wangwu
+ */
