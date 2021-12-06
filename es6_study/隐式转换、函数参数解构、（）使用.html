@@ -57,11 +57,45 @@
         // console.log(x, y);
 
         //函数参数解构赋值
-        function fn([x,y]){
+        /* function fn([x,y]){
             console.log(x,y);
         }
         fn([1,2]);
-        
+        fn()//报错
+        fn([])//undefined undefined */
+
+        /* function fn({x,y}){
+            console.log(x, y);
+        }
+        fn({x: 1,y: 2}) */
+
+        /* function fn({x = 10} = {}, {y} = {y: 10}){
+            console.log(x, y);
+        }
+        fn()// 10 10
+        fn({},{}) //10 undefined */
+        /* ({x=10} = {});
+        ({y} = {y:10}); */
+
+        //解构的隐式转换
+        //字符串转换为类数组
+        let [a, b, c, d, e] = 'hello';
+        console.log(a, b, c, d, e);//h e l l o
+        let {length: len} = 'hello';
+        console.log(len);//5
+        //数字隐式转换
+        let {toString: s} = 123;
+        console.log(s === Number.prototype.toString);// true
+        //boolean包装类
+        let {toString: l} = false;
+        console.log(l === Boolean.prototype.toString);// true
+        //undefined,null不能隐式转换
+        let {prop} = undefined;
+        console.log(prop);// 报错
+        let {prop} = null;
+        console.log(prop);// 报错
+        //所以fn（）不赋值相当于undefined不能隐式转换所以报错，{}能隐式转换
+
 
 
 
