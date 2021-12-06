@@ -117,8 +117,43 @@ foo(); //100
 a = 100;
 foo();//101   默认参数为表达式，有惰性求值 */ 
 
-let a = 99;
+/* let a = 99;
 function foo(b = 99, a = b + 1) { //let b = 99 +1 =100   函数体作用域可以访问函数参数作用域
     console.log(a,b); //
 }
-foo(); //100
+foo(); //100 */
+
+//解构
+
+//模式匹配（结构化赋值）
+/* 
+    1、等号两边结构相同
+    2、解构失败 值少了，变量多了 默认赋值为undefined
+    3、不完全解构  变量少了，值多了
+    4、解构赋值可以设置默认值 // undefined时赋值默认值，null不赋默认值
+*/
+/* let [a, b, c] = [1, 2, 3];
+let [a, b, c, [d, e], [f, g]] = [1, 2, , [, 5], [6, 7]];
+let [a, , c, [, e], [f, g]] = [1, 2, 3, [4, 5], [6, 7]];
+let [a = 6] = [1];//a = 1
+let [a = 6] = [];//a = 6
+let [a = 1, b = 2] = [2,null];// a = 2, b = null
+function num() {
+    return 10;
+}
+let [a = num()] = [1]; //a = 1
+let [a = num()] = []; //a = 10
+
+let [x = 1, y = x] = [] // x = 1,y = 1 */
+
+//let [x = y, y = 1] = []; //TDZ
+
+//es5对象创建
+const obj  = {};
+const obj1 = new Obeject();//option:{}
+const obj2 = Object.create(null);//option:{} 指定__proto__ = null
+//es5对象的增删改查
+obj.name = '张三';
+obj.name = '李四';//或者obj['name'] 对象的属性值为字符串或者symbol，不是字符串的自动转为字符串
+obj.name;
+delete obj.name;
