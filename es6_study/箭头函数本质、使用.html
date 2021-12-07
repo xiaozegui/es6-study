@@ -1,17 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+    <button id="button">button</button>
     <script type="text/javascript">
-        
+        //=>this:由外层箭头函数决定
+        //=>不能作构造函数
+        //=>没有arguments对象，用rest运算符替代
+        //=>yield命令不能生效，在generator *生成器函数中。
+
+        /*  function foo(){
+             console.log(this);
+             return () => {
+                 console.log(this.a);
+             }
+         }
+         const obj1 = {a: 1};
+         const obj2 = {a: 2};
+         let fn = foo.call(obj1);//obj1
+         fn.call(obj2);//1 显示绑定不生效 */
+
+        /*  const person = {
+             eat(){
+                 console.log(this);
+             },
+             drink: () => {
+                 console.log(this);
+             },
+             th: this
+         }
+         person.eat();//pserson
+         person.drink();//window
+         console.log(person.th);//window,对象的{}不会产生块级作用域 */
+
+        //回调函数中的this默认是指向window的，因为本质上是在函数内callback,并没有.前的对象调用
+
+        /* (function () {
+            function Button() {
+                this.button = document.querySelector('#button');
+            }
+            Button.prototype = {
+                th: this,
+                init() {
+                    this.bindEvent();
+                    console.log(this.th);
+                },
+                bindEvent() {
+                    this.button.addEventListener('click',()=>{console.log(this);}, false);
+                }
+            }
+            new Button().init()
+        })() */
+
+        /* function foo(){
+            //{id:1}
+            return () => {
+                return () => {
+                    //{id:3}
+                    return () => {
+                        console.log('id',this.id);//函数定义时作用域确定
+                    }
+                }
+            }
+        }
+        let f = foo.call({id:1});//id:1 
+        let f1 = f.call({id:2})()();//id 1
+        let f2 = f().call({id:3})();//id 1
+        let f3 = f()().call({id:4});//id 1 */
+        //this指向是固化的，箭头函数内部是没有自己的this，只能通过父级作用域来获得this，闭包this
+
+        /* function fn(...args){
+            console.log(arguments);
+            setTimeout(() => {
+                console.log(arguments);//=>函数没有arguments，arguments是父级的，同this一样
+            },100)
+        }
+        fn(1, 2, 3, 4, 5, 6); */
+
+        /* function insert(value){
+            return {
+                into(array){
+                    return {
+                        after(afterval){
+                            array.splice(array.indexOf(afterval)+1,0,value);
+                            return array
+                        }
+                    }
+                }
+            }
+        } */
+        let insert = (value) => {
+            return {
+                into: (array) => {
+                    return {
+                        after: (afterval) => {
+                            array.splice(array.indexOf(afterval) + 1, 0, value);
+                            return array
+                        }
+                    }
+                }
+            }
+        }
+        let arr = insert(5).into([1, 2, 3, 4, 6, 7, 8]).after(4);
+        console.log(arr);
+
+
 
 
 
     </script>
 </body>
+
 </html>

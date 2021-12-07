@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        //函数表达式：变量+匿名函数
+        /*  const fn = function(){};
+         fn.name//fn es5为空 */
+        /* let fn =  new Function('console.log("haha")');
+        fn(); */
+       
+        //对象扩展，属性描述符
+        /* let foo = (a = 1, b = 2) => ({ a, b })
+        let obj =  foo();
+        let desc1 = Object.getOwnPropertyDescriptor(obj,'a');
+        console.log(desc1);
+        Object.defineProperty(obj,'c',{
+            value: 2,
+            enumerable: true,
+            configurable: true,
+            writable: true
+        })
+        let desc2 = Object.getOwnPropertyDescriptor(obj,'c');
+        console.log(desc2); */
+
+        //getter setter
+        //get operate      put operate
+
+        /* let obj = {a: 1};
+        obj.a;//底层[[Get]] 默认操作 查找对象及其原型 赋值undefined
+        obj.a = 3;//[[Put]] 默认操作 */
+        //1 setter getter
+        //2 writable false 3赋值
+        //es5 getter setter覆盖[[Get]] [[Put]]操作
+
+        /* const obj = {
+            log: ['1','2'],
+            get laster(){//  伪属性
+                if(this.log.length === 0){return undefined}
+                return this.log[this.log.length - 1];
+            }
+        }
+        console.log(obj.laster);//2 */
+
+        /* const obj = {
+            get a(){
+                return 2
+            }
+        }
+        Object.defineProperty(obj, 'b', {
+            get: function(){   //value writable不能用
+                return this.a * 2;
+            },
+            enumerable: true
+        })
+        console.log(obj.a);//2
+        console.log(obj.b);//4 */
+
+        /* let obj = {
+            log: [],
+            set current(val){
+                this.log.push(val);
+            }
+        }
+        obj.current = 'en';
+        console.log(obj.log); */
+        
+        //get set成对出现
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
