@@ -1,16 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script type="text/javascript">
-        //promise基础
+        //promise基础  promise一旦状态发生改变不在更改（promise固化）
+        //promise A+规范
+        //promise 三种状态 pending（准备）fulfill（成功） reject（失败）
+        //resolve  pending->fulfill
+        //reject pending -> rejected
+
+        /* let pro = new Promise((resolve, reject) => {
+            resolve(200);
+            console.log(this);//执行，同步代码，优先于resolve
+            reject(404);//不执行，promise固化
+        })
+        pro.then((res) => {
+            console.log(res,this);
+        }, (error) => {
+            console.log(error,this);
+        }) */
+        //promise是异步的容器
+
+        /* let pro = new Promise((resolve, reject) => {
+            resolve(3);
+            setTimeout(() => {
+                console.log(2);
+            },0)
+            console.log(1);
+            
+        })
+        pro.then((res) => {
+            console.log(res);
+        }, (error) => {
+            console.log(error);
+        }) */
+
+        /* let arr = [1, 2, 3, 4, 5, 6];
+        let iter = arr[Symbol.iterator]();//values()   Array Iterator  next() {value: 1, done: true}
+        console.dir(iter.next()); */
+
+        //模拟数组的迭代器  return {next(){}}
+        /* let arr = [1, 2, 3, 4, 5, 6]
+        function val(arr){
+            let index = 0;
+            return {
+                next(){
+                    return index < arr.length ? {value: arr[index++], done: false} : {value: arr[index], done: true}
+                }
+            }
+        }
+        let obj = val(arr) 
+        console.log(obj); */
+
+        //给对象添加iterator迭代器
+        /* let obj = {
+            a: 0,
+            b: 1,
+            c: 2,
+            d: 3,
+            [Symbol.iterator]: function(){
+                let arr = Object.entries(this);//
+                console.log(arr);
+                let index = 0;
+                let len = arr.length;
+                return {
+                    next(){
+                        return index < len ? {value: arr[index++], done: false} : {value: arr[index], done: true}
+                    }
+                }
+            }
+        }
+        for(let item of obj){
+            console.log(item);
+        } */
+
+        /* //生成器--执行器   执行生成器函数产生迭代器对象
+        function *gene(){
+            for(let i = 0; i < 10; i++){
+                yield i;
+            }
+        }
+        let iter = gene();//生成迭代器对象（next）
+        console.log(iter);
+        console.log(gene);//生成器函数，执行产生迭代器对象 */
+
+        //js执行机制：
+        /* 
+            1、异步：--Dom冲突（单线程）
+            2、事件轮询
+            3、回调函数
+            
+            js是单线程，解决方案-异步
+            异步解决方案-事件轮询
+            事件轮询的核心是-回调函数（参数为函数）
+            //sort为高阶函数 参数为回调函数  settimeout ajax   同步和异步回调函数
+            example：Array.sort(function(){})（同步回调函数）
+        */
+
+        //call stack：主线程（chrome development有这个）
+        //event loop:事件轮询
+        //callback queue:任务队列（回调队列）
+        
+        
+        
 
 
     </script>
 </body>
+
 </html>
