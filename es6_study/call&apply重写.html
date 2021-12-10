@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        //call&apply重写
+        Function.prototype.mycall = function(obj) {
+            if(typeof obj == 'object' && obj !== null) {
+                let n = Symbol('AAA');
+                let args = [];
+                for(let i = 1; i < arguments.length; i++) {
+                    args.push(arguments[i]);
+                }
+                obj[n] = this;
+                //console.log(obj);
+                let res = obj[n](...args);//核心代码
+                delete obj[n];
+                //console.log(obj);
+                return res;
+            }else{
+                return new Error('参数不是对象');
+            }
+        }
+        
+        const obj1 = {
+            a: 1,
+            b: 2
+        }
+        const obj2 = {
+            a: 'a',
+            b: 'b'
+        }
+       /*  test.call([], 3, 4);
+        test.mycall([], 3, 4);
+        test.mycall(obj2, 5, 6); */
+
+        Function.prototype.myApply = function(obj) {
+            if(typeof obj == 'object' && obj !== null) {
+                let n = Symbol('AAA');
+                let args = [];
+                for(let i = 0; i < arguments[1].length; i++) {
+                    args.push(arguments[1][i]);
+                }
+                obj[n] = this;
+                //console.log(obj);
+                let res = obj[n](...args);//核心代码
+                //delete obj[n];
+                //console.log(obj);
+                return res;
+            }else{
+                return new Error('参数不是对象');
+            }
+        }
+        function test(c, d) {
+            console.log(this.a);
+            console.log(this.b);
+            console.log(c, d);
+        }
+        test.myApply(obj1,['hi', 'hello']);
+
+    </script>
+</body>
+</html>

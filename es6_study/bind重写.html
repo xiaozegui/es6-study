@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        //bind重写
+        //bind偏函数的特性
+        //bind原型
+        Function.prototype.mybind = function(obj) {
+            let fn = this;
+            let args = Array.prototype.slice.call(arguments, 1);
+            let target = function() {      //核心代码
+                let innerargs = Array.prototype.slice.call(arguments);
+                return fn.apply(obj,args.concat(innerargs));//核心代码
+            }
+            target.prototype = fn.prototype;
+            return target;
+        }
+        let obj1 = {
+            a: 1,
+            b: 2
+        }
+        let obj2 = {
+            a: 'a',
+            b: 'b'
+        }
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.say = function() {
+            console.log('say');
+        }
+        let Person1 = Person.mybind(obj1)
+        let p = new Person1();
+        p.say();
+        /* console.log(Person1.prototype == Person.prototype);
+        console.log(Person1.prototype);
+        console.log(Person.prototype); */
+        
+        /* function test(a, b) {
+            console.log(this.a);
+            console.log(this.b);
+            console.log(a);
+            console.log(b);
+        }
+        // 偏函数
+        test.mybind(obj2, 3, 4)();
+        test.mybind(obj2)(3, 4);
+        test.mybind(obj2, 3)(4); */
+        
+    </script>
+</body>
+</html>
