@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        //class重写
+        /*
+            class 不能提升 TDZ
+            class 只能通过new 实例
+            class 采用严格模式
+            calss 原型上的属性不能遍历
+            在calss内部不能修改class名称
+        */
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            say() {
+                console.log('say');
+            }
+            sayhi() {
+                console.log('hi');
+            }
+            static eat() {
+                console.log('eat');
+            }
+        }
+        /* ================================== */
+        {
+            function Person() {
+                this.name = name;
+                this.age = age;
+            }
+            Person.eat = function () {
+                console.log('eat');
+            }
+            Person.prototype = {
+                constructor: Person,
+                say() {
+                    console.log('say');
+                },
+                sayhi() {
+                    console.log('hi');
+                }
+            }
+        }
+        
+
+    </script>
+</body>
+
+</html>
