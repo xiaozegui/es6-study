@@ -8,7 +8,36 @@
 </head>
 <body>
     <script type="text/javascript">
-        
+        //var Function = new Function()  Function.prototype === Function.__proto__
+        //实现new 实例化
+        /* Person.__proto__ ----> Function.prototype  实例对象可以访问原型上的方法 */
+        function Person(name){
+            //let this = {}
+            this.name = name;
+            //默认return this
+            //return {}/[]引用值 new返回引用值，否则默认返回this
+            //return '123'//{}
+        }
+        //函数执行方式：
+        //1 Person() //return 默认undefined
+        //2 new Person() //默认返回this，this是系统变量，可以手动返回引用值
+        Person.prototype.say = function(){
+            console.log('say');
+        }
+        //Person.__proto__ ---> Function.prototype
+        //Person.prototype = {f:say}
+        /* let xiaoming = new Person('xiaoming');
+        xiaoming.say(); */
+        //arguments
+        Function.prototype.new = function(){
+            let fn = this;//this->Person
+            let obj = Object.create(fn.prototype);
+            let res = fn.apply(obj, arguments);
+            return res instanceof Object? res : obj;
+        };
+        let p = Person.new('zhangsan');
+        console.log(p);
+
 
     </script>
 </body>
