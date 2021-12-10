@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        //数据属性
+        let obj = {
+            a: 1,//描述符为true
+            get c() {
+                console.log('getter');
+                return this.a;
+            },
+            set c(newval) {
+                console.log('setter');
+                this.a = newval
+            }
+        }
+        Object.defineProperty(obj, 'b', {
+            value: 2 //其余描述符为false
+        })
+        //访问器属性：getter setter
+        console.log(obj.c);//getter 1
+        obj.c = 'c';//setter
+        console.log(obj.c);//getter 'c'
+        /* 
+            configurable: true
+            enumerable: true
+            get: ƒ c()         //getter setter代替value和writable，不能同时存在
+            set: ƒ c(newval)   //get set成对出现
+        */
+        console.log(Object.getOwnPropertyDescriptor(obj, 'c'));
+        /* 
+            configurable: true
+            enumerable: true
+            value: "c"
+            writable: true
+        */
+        console.log(Object.getOwnPropertyDescriptor(obj, 'a'));
+    </script>
+</body>
+
+</html>
