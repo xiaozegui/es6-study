@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        //foreach重写
+        /* array.forEach((item, index, arr) => {
+            console.log(item, index, arr);
+        }, obj); */
+        /* Array.prototype.myforeach = function (fn) {
+            let arr = this;
+            let context = arguments[1] || window;
+            //console.log(context);
+            if (typeof fn == 'function') {
+                for (let i = 0; i < arr.length; i++) {
+                    fn.apply(context, [arr[i], i, arr]);
+                }
+            } else {
+                new Error('参数必须为fn')
+            }
+        } */
+        let arr = [1, 2, 3, 4, 5];
+        /* let obj = {
+            a: 'a',
+            b: 'b'
+        } */
+        var obj = {
+            fun1: function () {
+                window.setTimeout(function () {
+                    console.log('普通函数', this);
+                })
+            },
+            fun2: function () {
+                window.setTimeout(() => {
+                    console.log('箭头函数', this);
+                })
+            }
+        }
+        obj.fun1();
+        obj.fun2();
+        //定义箭头函数所在的作用域
+        //作用域指向的对象this
+        arr.forEach((item, index, arr) => {
+            console.log(item);
+            //console.log(this.a);
+        }, obj)
+        Array.prototype.mymap = function () { }
+
+    </script>
+</body>
+
+</html>
