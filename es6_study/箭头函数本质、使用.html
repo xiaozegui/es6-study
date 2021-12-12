@@ -41,7 +41,18 @@
          console.log(person.th);//window,对象的{}不会产生块级作用域 */
 
         //回调函数中的this默认是指向window的，因为本质上是在函数内callback,并没有.前的对象调用
+        //this 替换fn，this指向执行上下文，js中执行上下文有2种，全局执行上下文window，函数执行上下文，每一个函数执行都有执行上下文，每一次执行函数都创建this
+        
+        /* let button = document.querySelector('#button');
+        //函数执行产生this执行上下文
+        button.addEventListener('click', () => { console.log(this); }, false);
+        let A = function(a) {
+            console.log(a);
+            console.log(this);
+        }
+        let obj = {A}
 
+        obj.A(this); */
         /* (function () {
             function Button() {
                 this.button = document.querySelector('#button');
@@ -53,12 +64,12 @@
                     console.log(this.th);
                 },
                 bindEvent() {
-                    this.button.addEventListener('click',()=>{console.log(this);}, false);
+                    this.button.addEventListener('click', () => { console.log(this); }, false);
                 }
             }
             new Button().init()
-        })() */
-
+        })()
+ */
         /* function foo(){
             //{id:1}
             return () => {
@@ -70,7 +81,7 @@
                 }
             }
         }
-        let f = foo.call({id:1});//id:1 
+        let f = foo.call({id:1});//id:1
         let f1 = f.call({id:2})()();//id 1
         let f2 = f().call({id:3})();//id 1
         let f3 = f()().call({id:4});//id 1 */
@@ -96,7 +107,7 @@
                 }
             }
         } */
-        let insert = (value) => {
+        /* let insert = (value) => {
             return {
                 into: (array) => {
                     return {
@@ -109,7 +120,7 @@
             }
         }
         let arr = insert(5).into([1, 2, 3, 4, 6, 7, 8]).after(4);
-        console.log(arr);
+        console.log(arr); */
 
 
 
