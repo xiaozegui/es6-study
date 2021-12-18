@@ -24,7 +24,7 @@ server.on('request', (request, response) => {
     //解决方法
     /* response.setHeader('Content-Type', 'text/plain; charset=utf-8');//text/html解析标签
     response.end('hello 世界') */
-    if (request.url === '/') {
+   /*  if (request.url === '/') {
         //实现alpha服务器功能  网页都是字符串 浏览器能识别这些字符串
         fs.readFile('../static/view/index.html', (err, data) => {
             if (err) {
@@ -47,7 +47,12 @@ server.on('request', (request, response) => {
             response.setHeader('Content-Type', 'image/png');//图片不需要指定编码
             response.end(data);//图片不需要toString
         });
-    }
+    } */
+    
+    let url = request.url;
+    //当浏览器收到html响应内容后，从上到下依次解析，解析过程发现src或href（除了a）标签：link script img iframe video audio，
+    //浏览器会对这些静态资源自动发起请求
+    //在服务器中，/是url根路径的意思，客户端浏览器会自动将前缀补上ip+port
 })
 
 //4、绑定端口号，启动服务器
