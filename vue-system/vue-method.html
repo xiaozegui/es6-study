@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <title>methods Option</title>
+</head>
+<body>
+    <h1>methods Option</h1>
+    <hr>
+    <div id="app">
+        {{ a }}
+        <p><button @click='add(2,$event)'>add</button> </p>
+        <btn @click.native='add(2,$event)'></btn>
+    </div>
+    <button onclick = 'app.add(2)'>外部add</button>
+
+    <script type="text/javascript">
+        var btn = {
+            template:'<button>add</button>'
+        }
+        var app=new Vue({
+            el:'#app',
+            data:{
+                a:1
+            },
+            components:{
+                btn
+            },
+            methods:{
+                add:function(num, event){
+                    this.a +=num;
+                    console.log(event);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

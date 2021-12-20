@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <title>Examples Method Demo</title>
+</head>
+
+<body>
+    <h1>Examples Method Demo</h1>
+    <hr>
+    <div id="app">
+    </div>
+    <button onclick='destroy()'>destroy</button><br>
+    <button onclick='reload()'>forceupdate</button><br>
+    <button onclick='tick()'>nextTick</button><br>
+
+    <script type="text/javascript">
+        var jspang = Vue.extend({
+            template: `<p>{{message}}</p>`,
+            data: function () {
+                return {
+                    message: 'Hello world'
+                }
+            },
+            mounted() {
+                console.log('after mounted');
+            },
+            destroyed() {
+                console.log('after destroy');
+            },
+            updated() {
+                console.log('after update');
+            }
+        })
+        var vm = new jspang().$mount("#app")
+        function destroy() {
+            console.log('destroy');
+            vm.$destroy();
+        }
+        function reload() {
+            vm.$forceUpdate()
+        }
+        function tick() {
+            vm.message = "update message info ";
+            vm.$nextTick(function () {
+                console.log('message更新完后我被调用了');
+            })
+        }
+    </script>
+</body>
+
+</html>

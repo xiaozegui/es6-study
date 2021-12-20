@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <title>methods Option</title>
+</head>
+
+<body>
+    <h1>methods Option</h1>
+    <hr>
+    <div id="app">
+        <p>今日温度：{{wendu}}</p>
+        <p>穿衣建议：{{suggestion}}</p>
+        <button @click='add()'>增加</button>
+        <button @click='reduce()'>减少</button>
+
+    </div>
+
+
+    <script type="text/javascript">
+        var suggestion = ['夹克长裙', '短袖', '棉衣']
+        var app = new Vue({
+            el: '#app',
+            data: {
+                wendu: 14,
+                suggestion: '夹克长裙'
+            },
+            components: {
+
+            },
+            methods: {
+                add() {
+                    this.wendu += 5;
+                },
+                reduce() {
+                    this.wendu -=5;
+                }
+            },
+            watch: {
+                wendu(newVal, oldVal) {
+                    if (newVal >= 26) {
+                        this.suggestion = suggestion[0];
+                    } else if (newVal < 26 && newVal >= 0) {
+                        this.suggestion = suggestion[1];
+                    } else {
+                        this.suggestion = suggestion[2];
+                    }
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

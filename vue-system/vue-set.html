@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for = 'item in arr'>{{item}}</li>
+        </ul>
+        
+    </div>
+    <p><button onclick = 'add()'>+</button></p>
+    <script type="text/javascript">
+        function add() {
+            //Vue.set(outData,'count',2);
+            //app.count++;
+            //app.arr[1] = 'ddd';//无法监听到array
+            Vue.set(outData.arr,1,'ddd');
+            
+        }
+        var outData = {
+            arr:['aaa','bbb','ccc']
+        }
+        var app = new Vue({
+            el: '#app',
+            data: outData,
+            methods: {
+                
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <script type="text/javascript" src="./jquery.min.js"></script>
+    <title>Early Examples Demo</title>
+</head>
+
+<body>
+    <h1>Early Examples Demo</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello Vue!'
+            },
+            //在Vue中使用jQuery
+            mounted: function () {
+                $('#app').html('我是jQuery!');
+            },
+            methods: {
+                add: function () {
+                    console.log("调用了Add方法");
+                    console.log(this);
+                }
+            }
+        });
+        app.add();
+    </script>
+</body>
+
+</html>
